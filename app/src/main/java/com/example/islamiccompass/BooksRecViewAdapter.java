@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
@@ -32,14 +33,16 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
         for (Map.Entry<Integer, Book> entry : books.entrySet()) {
             Integer key = entry.getKey();
             Book value = entry.getValue();
-            System.out.println("key " + key + " value.getName " + value.getName() + " position " + position);
+            //System.out.println("key " + key + " value.getName " + value.getName() + " position " + position);
             if(key == position){
                 System.out.println(key + " == " + position);
                 System.out.println("Book Name: " + value.getName());
                 holder.bookName.setText(value.getName());
+                holder.authorName.setText(value.getAuthor());
+            } else {
+
+                System.out.println("NOT MATCH!!!!");
             }
-            position += 1;
-            System.out.println("NOT MATCH!!!!");
         }
 
     }
@@ -57,9 +60,16 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView bookName;
+        private TextView authorName;
+        private CardView parent;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             bookName = itemView.findViewById(R.id.bookName);
+            authorName = itemView.findViewById(R.id.authorName);
+            //Can use the parent to make toast and onclick actions
+            parent = itemView.findViewById(R.id.parent);
         }
     }
 }
+

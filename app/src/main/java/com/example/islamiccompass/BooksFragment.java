@@ -51,7 +51,7 @@ public class BooksFragment extends Fragment {
         adapter.setBooks(books);
 
         booksRecView.setAdapter(adapter);
-        booksRecView.setLayoutManager(new LinearLayoutManager(getContext()));
+        booksRecView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         return view;
     }
 }
