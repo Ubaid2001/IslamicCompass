@@ -214,7 +214,7 @@ public class CompassFragment extends Fragment implements SensorEventListener {
                                 Location location1 = locationResult.getLastLocation();
 
                                 latitude = location1.getLatitude();
-                                longitude = location1.getLongitude();
+                                longitude =  location1.getLongitude();
                             }
                         };
 
@@ -238,16 +238,22 @@ public class CompassFragment extends Fragment implements SensorEventListener {
                 public void onComplete(@NonNull Task<Location> task) {
 
                     destLoc = task.getResult();
-                    destLoc.setLatitude(21.422487); //kaaba latitude setting
-                    destLoc.setLongitude(39.826206); //kaaba longitude setting
+//                    destLoc.setLatitude(21.422487); //kaaba latitude setting
+//                    destLoc.setLongitude(39.826206); //kaaba longitude setting
 
 
                     if (destLoc != null) {
+
+                        destLoc.setLatitude(21.422487); //kaaba latitude setting
+                        destLoc.setLongitude(39.826206); //kaaba longitude setting
+
                         destLocLatitude = destLoc.getLatitude();
                         destLocLongitude = destLoc.getLongitude();
                         System.out.println("Kaaba longitude: " + destLocLongitude + " Kaaba latitude: " + destLocLatitude);
+
                         bearTo = userlocation.bearingTo(destLoc);
                         System.out.println("BearTo:" + bearTo + "\u00B0" + " -------------------!!!!!!!!!!!!!!!!!!!!!");
+
                         float bearing = (float) (Math.round(bearTo * 100.0) / 100.0);
                         bearingView.setText("Bearing: " + bearing + "\u00B0");
 
@@ -281,7 +287,7 @@ public class CompassFragment extends Fragment implements SensorEventListener {
                                 super.onLocationResult(locationResult);
                                 Location location1 = locationResult.getLastLocation();
 
-                                destLocLatitude = location1.getLatitude();
+                                destLocLatitude =  location1.getLatitude();
                                 destLocLongitude = location1.getLongitude();
                             }
                         };

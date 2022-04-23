@@ -21,7 +21,8 @@
         <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/drawable/ic_theCompass_background.xml" value="0.1" />
         <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/drawable/splash_screen.xml" value="0.2505" />
         <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
-        <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/fragment_books.xml" value="0.1" />
+        <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/book_list_item.xml" value="0.1" />
+        <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/fragment_books.xml" value="0.25" />
         <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/fragment_compass.xml" value="0.22" />
         <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/fragment_home.xml" value="0.25462962962962965" />
         <entry key="..\:/Users/ubaid/AndroidStudioProjects/IslamicCompass/app/src/main/res/layout/fragment_lauch_screen.xml" value="0.35572916666666665" />
