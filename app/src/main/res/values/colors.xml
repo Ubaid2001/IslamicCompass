@@ -11,5 +11,8 @@
     <color name="secondary">#00B512</color>
     <color name="primary">#C3C3C3</color>
     <color name="grey">#8D8D8D</color>
+    <color name="darkPrimary">#2C2B2B</color>
+    <color name="darkSecondary">#19DC2C</color>
+    <color name="tertiary">#82F486</color>
 
 </resources>

@@ -44,26 +44,29 @@ public class CompassFragment extends Fragment implements SensorEventListener {
     private OnFragmentInteractionListener mListener;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private FusedLocationProviderClient fusedLocationProviderClientKaaba;
+
     private Location userlocation;
     private Location destLoc;
+
     private double longitude;
     private double latitude;
     private double altitude;
     private double destLocLatitude;
     private double destLocLongitude;
+
     private ImageView compassView;
     private ImageView pointerView;
     private TextView bearingView;
+
     private float[] mGravity = new float[3];
     private float[] mGeomagnetic = new float[3];
     private float azimuth = 0f;
     private float currentAzimuth = 0f;
+
     private SensorManager mSensorManager;
-//    private float currentDegree = 0f;
-//    private float currentDegreeNeedle = 0f;
+
     private float bearTo = 0f;
     private float head = 0f;
-//    private float direction = 0f;
 
     private ActivityResultLauncher<String[]> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
             hashmap -> {
@@ -163,7 +166,6 @@ public class CompassFragment extends Fragment implements SensorEventListener {
 
     }
 
-
     private void getLocations(){
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
         fusedLocationProviderClientKaaba = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -194,10 +196,6 @@ public class CompassFragment extends Fragment implements SensorEventListener {
                         longitude = userlocation.getLongitude();
                         altitude = userlocation.getAltitude();
                         System.out.println("longitude: " + longitude + " latitude: " + latitude);
-//                        if(userlocation.hasBearing()){
-//                            System.out.println("BearTo:" + userlocation.getBearing() + "-------------------!!!!!!!!!!!!!!!!!!!!!");
-//                        }
-                        //System.out.println("BearTo:" + userlocation.getBearingAccuracyDegrees() + "-------------------!!!!!!!!!!!!!!!!!!!!!");
 
 
                     } else {
