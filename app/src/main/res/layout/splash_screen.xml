@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primary">
+    android:id="@+id/splashcreen">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_main"
             android:layout_width="400dp"
             android:layout_height="400dp"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="Ripple.json"
             app:lottie_loop="true"
             app:lottie_speed="1"
             android:layout_centerInParent="true"
@@ -25,32 +24,3 @@
             android:layout_centerInParent="true"/>
 
 </RelativeLayout>
-
-<!--    <?xml version="1.0" encoding="utf-8"?>-->
-<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
-
-<!--<item android:drawable="@color/main"/>-->
-
-<!--<item>-->
-<!--    <bitmap android:src="@drawable/kaaba1"-->
-<!--        android:gravity="center" />-->
-<!--</item>-->
-
-<!--<RelativeLayout>-->
-
-<!--    <com.airbnb.lottie.LottieAnimationView-->
-<!--        android:id="@+id/lottie_main"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="300dp"-->
-<!--        app:lottie_autoPlay="true"-->
-<!--        app:lottie_fileName="Ripple.json"-->
-<!--        app:lottie_loop="true" app:lottie_speed="1"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"/>-->
-
-<!--</RelativeLayout>-->
-
-
-<!--</layer-list>-->

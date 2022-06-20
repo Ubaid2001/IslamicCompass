@@ -1,37 +1,88 @@
 package com.example.islamiccompass;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.airbnb.lottie.L;
+import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class BooksFragment extends Fragment {
+
+    DataPassListener mCallback;
+
+
     private RecyclerView booksRecView;
+    private List<String> bookName = new ArrayList<>();
+    private  List<String>  bookDesc = new ArrayList<>();
+    private  List<String>  bookAuthor = new ArrayList<>();
+    private  List<Integer>  bookImageId = new ArrayList<>();
+    private BooksRecViewAdapter adapter;
+
     View view;
 
     public BooksFragment() {
         // Required empty public constructor
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
+        }
+    }
 
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try
+        {
+            mCallback = (DataPassListener) context;
+
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(context.toString()+ " must implement DataPassListener");
+        }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,18 +91,98 @@ public class BooksFragment extends Fragment {
 
         booksRecView = view.findViewById(R.id.booksRecView);
 
-        Map<Integer, Book> books = new HashMap<>();
-        books.put(0, new Book("Book1", "This is book 1", "Ubaid"));
-        books.put(1, new Book("Book2", "This is book 2", "Ubaid"));
-        books.put(2, new Book("Book3", "This is book 3", "Ubaid"));
-        books.put(3, new Book("Book4", "This is book 4", "Ubaid"));
-        books.put(4, new Book("Book5", "This is book 5", "Ubaid"));
+        // The adapter can be made inside this method or at the top of the class before the
+        //constructor, either methods works and will not display an error message.
+        //BooksRecViewAdapter adapter = new BooksRecViewAdapter();
 
-        BooksRecViewAdapter adapter = new BooksRecViewAdapter();
-        adapter.setBooks(books);
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
+
+        adapter = new BooksRecViewAdapter(new BooksRecViewAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+//                System.out.println("Item position: " + position);
+//                System.out.println("Item view: " + view.getId());
+
+                    Book book = adapter.getBookItem(position);
+                        String name = book.getName();
+                        String desc = book.getDesc();
+                        String author = book.getAuthor();
+
+                        int imageId = book.getImageId();
+                        System.out.println(imageId);
+
+
+                Book book2 = new Book(name, desc, author, null, imageId);
+                        System.out.println(book2);
+
+                        String jsonString =  gson.toJson(book2);
+                        mCallback.passData(jsonString);
+
+
+            }
+        });
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.63:3001")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+
+        NodeServerApi nodeServerApi = retrofit.create(NodeServerApi.class);
+
+        Call<List<Book>> call = nodeServerApi.getBooks();
+
+        call.enqueue(new Callback<List<Book>>() {
+            @Override
+            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+
+                System.out.println("The Android is connected to the Server!!!");
+                List<Book> booksList = response.body();
+
+                Map<Integer, Book> books = new HashMap<>();
+                int num = 0;
+
+                for (Book book : booksList) {
+
+                    bookName.add(book.getName());
+                    bookDesc.add(book.getDesc());
+                    bookAuthor.add(book.getAuthor());
+                    bookImageId.add(book.getImageId());
+
+                    String name = book.getName();
+                    String author = book.getAuthor();
+                    String desc = book.getDesc();
+                    int resId = book.getImageId();
+
+                    books.put(num, new Book(name, desc, author, getContext().getDrawable(resId), resId));
+
+                            num++;
+
+                }
+                adapter.setBooks(books);
+
+//                booksRecView.setAdapter(adapter);
+//                booksRecView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Book>> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
         booksRecView.setAdapter(adapter);
         booksRecView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
         return view;
     }
+
 }
