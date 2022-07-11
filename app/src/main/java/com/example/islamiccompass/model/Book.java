@@ -1,4 +1,4 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.model;
 
 import android.content.Context;
 import android.graphics.Outline;

@@ -1,4 +1,4 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.splashscreen;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,8 @@ import android.preference.PreferenceManager;
 import android.widget.RelativeLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.islamiccompass.main.MainActivity;
+import com.example.islamiccompass.R;
 
 
 ///**

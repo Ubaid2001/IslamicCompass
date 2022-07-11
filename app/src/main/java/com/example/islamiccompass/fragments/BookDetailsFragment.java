@@ -1,13 +1,10 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.fragments;
 
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
-import android.app.Notification;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,9 +12,6 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -30,6 +24,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.islamiccompass.serverapi.NodeServerApi;
+import com.example.islamiccompass.R;
+import com.example.islamiccompass.model.Book;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
@@ -39,9 +36,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -211,7 +205,8 @@ public class BookDetailsFragment extends Fragment {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.63:3001")
+//                .baseUrl("http://192.168.0.63:3001")
+                .baseUrl("http://ec2-3-8-201-100.eu-west-2.compute.amazonaws.com:3001")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

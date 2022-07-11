@@ -22,7 +22,7 @@
         android:theme="@style/Theme.IslamicCompass"
         android:requestLegacyExternalStorage="true">
         <activity
-            android:name=".SplashScreen"
+            android:name=".splashscreen.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.SplashScreen">
             <intent-filter>
@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:configChanges="uiMode"/>
+        <activity android:name=".main.MainActivity" android:configChanges="uiMode"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
