@@ -1,4 +1,4 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.fragments;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.islamiccompass.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

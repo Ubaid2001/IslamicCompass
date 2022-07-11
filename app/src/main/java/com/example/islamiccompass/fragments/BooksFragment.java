@@ -1,28 +1,22 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.airbnb.lottie.L;
-import com.google.android.gms.tasks.Task;
+import com.example.islamiccompass.recycleview.BooksRecViewAdapter;
+import com.example.islamiccompass.helper.DataPassListener;
+import com.example.islamiccompass.serverapi.NodeServerApi;
+import com.example.islamiccompass.R;
+import com.example.islamiccompass.model.Book;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -126,7 +120,8 @@ public class BooksFragment extends Fragment {
         });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.63:3001")
+//                .baseUrl("http://192.168.0.63:3001")
+                .baseUrl("http://ec2-3-8-201-100.eu-west-2.compute.amazonaws.com:3001")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

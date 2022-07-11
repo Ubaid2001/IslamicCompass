@@ -1,4 +1,4 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.model;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +10,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.islamiccompass.fragments.CompassFragment;
+import com.example.islamiccompass.R;
 
 ///**
 // * A simple {@link Fragment} subclass.

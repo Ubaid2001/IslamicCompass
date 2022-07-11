@@ -1,4 +1,4 @@
-package com.example.islamiccompass;
+package com.example.islamiccompass.helper;
 
 import android.content.SharedPreferences;
 

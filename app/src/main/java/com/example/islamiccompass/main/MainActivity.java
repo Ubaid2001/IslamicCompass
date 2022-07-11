@@ -1,32 +1,25 @@
-package com.example.islamiccompass;
-
-import static android.app.UiModeManager.MODE_NIGHT_YES;
+package com.example.islamiccompass.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
-import android.widget.Button;
-import android.widget.ImageView;
 
+import com.example.islamiccompass.R;
+import com.example.islamiccompass.fragments.BookDetailsFragment;
+import com.example.islamiccompass.fragments.BooksFragment;
+import com.example.islamiccompass.fragments.CompassFragment;
+import com.example.islamiccompass.fragments.SettingsFragment;
+import com.example.islamiccompass.helper.DataPassListener;
+import com.example.islamiccompass.model.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener, CompassFragment.OnFragmentInteractionListener, DataPassListener {
